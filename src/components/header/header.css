@@ -69,3 +69,7 @@
   color: #d3d3d3;
   cursor: pointer;
 }
+.date {
+  position: absolute;
+  top: 50px;
+}
