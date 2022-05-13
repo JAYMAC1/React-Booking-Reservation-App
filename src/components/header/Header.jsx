@@ -21,7 +21,7 @@ const Header = () => {
   const [options, setOptions] = useState({
     adult: 1,
     children: 0,
-    rooms: 1,
+    room: 1,
   })
   const [date, setDate] = useState([
     {
@@ -31,6 +31,16 @@ const Header = () => {
     },
   ])
 
+  const handleOption = (name, operation) => {
+    setOptions((prevOptions) => {
+      return {
+        ...prevOptions,
+        [name]: operation === 'inc' ? options[name] + 1 : options[name] - 1,
+      }
+    })
+  }
+
+  console.log(options)
   return (
     <div className='header'>
       <div className='headerContainer'>
@@ -99,25 +109,49 @@ const Header = () => {
               <div className='optionItem'>
                 <span className='optionText'>Adult</span>
                 <div className='optionCounter'>
-                  <button className='optionCounterButton'>-</button>
-                  <span className='optionCounterNumber'>1</span>
-                  <button className='optionCounterButton'>+</button>
+                  <button
+                    className='optionCounterButton'
+                    onClick={() => handleOption('adult', 'dec')}>
+                    -
+                  </button>
+                  <span className='optionCounterNumber'>{options[0]}</span>
+                  <button
+                    className='optionCounterButton'
+                    onClick={() => handleOption('adult', 'inc')}>
+                    +
+                  </button>
                 </div>
               </div>
               <div className='optionItem'>
                 <span className='optionText'>Children</span>
                 <div className='optionCounter'>
-                  <button className='optionCounterButton'>-</button>
+                  <button
+                    className='optionCounterButton'
+                    onClick={() => handleOption('children', 'dec')}>
+                    -
+                  </button>
                   <span className='optionCounterNumber'>0</span>
-                  <button className='optionCounterButton'>+</button>
+                  <button
+                    className='optionCounterButton'
+                    onClick={() => handleOption('children', 'inc')}>
+                    +
+                  </button>
                 </div>
               </div>
               <div className='optionItem'>
                 <span className='optionText'>Room</span>
                 <div className='optionCounter'>
-                  <button className='optionCounterButton'>-</button>
+                  <button
+                    className='optionCounterButton'
+                    onClick={() => handleOption('room', 'dec')}>
+                    -
+                  </button>
                   <span className='optionCounterNumber'>1</span>
-                  <button className='optionCounterButton'>+</button>
+                  <button
+                    className='optionCounterButton'
+                    onClick={() => handleOption('room', 'inc')}>
+                    +
+                  </button>
                 </div>
               </div>
             </div>
